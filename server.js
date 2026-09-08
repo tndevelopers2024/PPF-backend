@@ -11,6 +11,8 @@ import patternRoutes from './src/routes/patternRoutes.js';
 import jobRoutes from './src/routes/jobRoutes.js';
 import uploadRoutes from './src/routes/uploadRoutes.js';
 import plotterRoutes from './src/routes/plotterRoutes.js';
+import garageRoutes from './src/routes/garageRoutes.js';
+import settingsRoutes from './src/routes/settingsRoutes.js';
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ app.use('/api/patterns', patternRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/plotters', plotterRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/garage', garageRoutes);
+app.use('/api/settings', settingsRoutes);
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
