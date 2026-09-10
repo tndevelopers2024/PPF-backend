@@ -12,9 +12,6 @@ const vehicleSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
-    generation: {
-      type: String,
-    },
     year: {
       type: Number,
       required: true,
@@ -23,8 +20,20 @@ const vehicleSchema = new mongoose.Schema(
     variant: {
       type: String,
     },
-    bodyType: {
+    category: {
       type: String,
+      enum: [
+        'Exterior Of Car',
+        'Car Interior',
+        'Motorcycles',
+        'Window Film',
+        'Mobile electronic equipment',
+        'Pattern Logo Engraving',
+        'Car partial protection kit',
+        'External sunroof tint film',
+      ],
+      default: 'Exterior Of Car',
+      index: true,
     },
     market: {
       type: String,

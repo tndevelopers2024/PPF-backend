@@ -36,97 +36,294 @@ const seedData = async () => {
       role: 'INSTALLER',
     });
 
-    console.log('Inserting Vehicles...');
-    const vehicles = await Vehicle.insertMany([
+    console.log('Inserting Vehicles across categories with variants...');
+    const vehiclesData = [
+      // Exterior Of Car
       {
-        manufacturer: 'Tesla',
-        model: 'Model 3',
-        generation: 'Highland',
-        year: 2024,
-        bodyType: 'Sedan',
-        status: 'active',
-        createdBy: superAdmin._id
-      },
-      {
+        category: 'Exterior Of Car',
         manufacturer: 'Porsche',
         model: '911',
-        generation: '992',
-        year: 2023,
-        bodyType: 'Coupe',
+        variant: 'GT3 RS',
+        year: 2024,
         status: 'active',
-        createdBy: superAdmin._id
+        createdBy: superAdmin._id,
       },
       {
+        category: 'Exterior Of Car',
+        manufacturer: 'Porsche',
+        model: '911',
+        variant: 'Turbo S',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
+        manufacturer: 'Porsche',
+        model: '911',
+        variant: 'Carrera 4S',
+        year: 2023,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
+        manufacturer: 'Tesla',
+        model: 'Model 3',
+        variant: 'Performance',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
+        manufacturer: 'Tesla',
+        model: 'Model 3',
+        variant: 'Long Range',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
+        manufacturer: 'Tesla',
+        model: 'Model S',
+        variant: 'Plaid',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
         manufacturer: 'BMW',
         model: 'M3',
-        generation: 'G80',
+        variant: 'Competition xDrive',
         year: 2024,
-        bodyType: 'Sedan',
         status: 'active',
-        createdBy: superAdmin._id
+        createdBy: superAdmin._id,
       },
       {
+        category: 'Exterior Of Car',
+        manufacturer: 'BMW',
+        model: 'M4',
+        variant: 'CSL',
+        year: 2023,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
         manufacturer: 'Chevrolet',
         model: 'Corvette',
-        generation: 'C8',
+        variant: 'Z06',
         year: 2023,
-        bodyType: 'Coupe',
         status: 'active',
-        createdBy: superAdmin._id
-      }
-    ]);
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Exterior Of Car',
+        manufacturer: 'Chevrolet',
+        model: 'Corvette',
+        variant: 'Stingray 3LT',
+        year: 2023,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
 
-    console.log('Inserting Patterns...');
+      // Car Interior
+      {
+        category: 'Car Interior',
+        manufacturer: 'Mercedes-Benz',
+        model: 'S-Class',
+        variant: 'Maybach S680',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Car Interior',
+        manufacturer: 'Porsche',
+        model: 'Taycan',
+        variant: 'Turbo Cross Turismo',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Car Interior',
+        manufacturer: 'Tesla',
+        model: 'Model X',
+        variant: 'Plaid Six-Seat',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+
+      // Motorcycles
+      {
+        category: 'Motorcycles',
+        manufacturer: 'Ducati',
+        model: 'Panigale V4',
+        variant: 'V4 S',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Motorcycles',
+        manufacturer: 'BMW Motorrad',
+        model: 'S 1000 RR',
+        variant: 'M Package',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Motorcycles',
+        manufacturer: 'Harley-Davidson',
+        model: 'Fat Boy',
+        variant: '114 Special',
+        year: 2023,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+
+      // Window Film
+      {
+        category: 'Window Film',
+        manufacturer: 'Audi',
+        model: 'RS6 Avant',
+        variant: 'Performance',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Window Film',
+        manufacturer: 'Toyota',
+        model: 'Land Cruiser',
+        variant: 'GR Sport',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+
+      // Mobile electronic equipment
+      {
+        category: 'Mobile electronic equipment',
+        manufacturer: 'Apple',
+        model: 'iPhone 15 Pro Max',
+        variant: 'Titanium Edition',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+      {
+        category: 'Mobile electronic equipment',
+        manufacturer: 'Samsung',
+        model: 'Galaxy S24 Ultra',
+        variant: '512GB Ceramic',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+
+      // Pattern Logo Engraving
+      {
+        category: 'Pattern Logo Engraving',
+        manufacturer: 'Custom Emblem',
+        model: 'Signature Badge',
+        variant: 'Gloss Carbon Cut',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+
+      // Car partial protection kit
+      {
+        category: 'Car partial protection kit',
+        manufacturer: 'Ford',
+        model: 'Mustang Dark Horse',
+        variant: 'Track Pack (Hood & Mirrors)',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+
+      // External sunroof tint film
+      {
+        category: 'External sunroof tint film',
+        manufacturer: 'Tesla',
+        model: 'Model Y',
+        variant: 'Panoramic Roof High Heat',
+        year: 2024,
+        status: 'active',
+        createdBy: superAdmin._id,
+      },
+    ];
+
+    const createdVehicles = await Vehicle.insertMany(vehiclesData);
+    console.log(`Inserted ${createdVehicles.length} vehicles.`);
+
+    console.log('Inserting 1 Pattern per Vehicle with verified DXF/SVG vector assets...');
     const patterns = [];
-    for (const vehicle of vehicles) {
+
+    // Real file paths available in backend/uploads/patterns
+    const sampleDxf = '/uploads/patterns/1788790180589-379676948.dxf';
+    const sampleSvg = '/uploads/patterns/1788790180589-379676948.dxf.svg';
+
+    for (const v of createdVehicles) {
       patterns.push({
-        vehicleId: vehicle._id,
-        name: 'Full Front',
-        part: 'Full Front Package',
-        patternType: 'Paint Protection Film',
+        vehicleId: v._id,
+        name: `${v.manufacturer} ${v.model} ${v.variant ? `(${v.variant}) ` : ''}Complete Pattern`,
+        part: 'Full Vehicle Kit',
+        patternType: v.category === 'Window Film' ? 'Window Film' : 'Paint Protection Film',
         status: 'published',
-        createdBy: superAdmin._id
-      });
-      patterns.push({
-        vehicleId: vehicle._id,
-        name: 'Track Package',
-        part: 'Track Package',
-        patternType: 'Paint Protection Film',
-        status: 'published',
-        createdBy: superAdmin._id
+        files: {
+          dxf: { url: sampleDxf, key: '1788790180589-379676948.dxf' },
+          svg: { url: sampleSvg, key: '1788790180589-379676948.dxf.svg' },
+        },
+        dimensions: {
+          width: 1524,
+          height: 3200,
+          unit: 'mm',
+        },
+        version: 1,
+        createdBy: superAdmin._id,
       });
     }
-    
-    const createdPatterns = await Pattern.insertMany(patterns);
 
-    console.log('Inserting Jobs...');
+    const createdPatterns = await Pattern.insertMany(patterns);
+    console.log(`Inserted ${createdPatterns.length} cutting patterns (1:1 with vehicles).`);
+
+    console.log('Inserting Initial Jobs...');
     await Job.insertMany([
       {
         installerId: installer._id,
-        vehicleId: vehicles[0]._id, // Tesla
+        vehicleId: createdVehicles[0]._id, // Porsche 911 GT3 RS
         patterns: [
-          { patternId: createdPatterns[0]._id, name: 'Full Front' }
+          { patternId: createdPatterns[0]._id, name: createdPatterns[0].name }
         ],
         filmWidth: 60,
-        materialUsed: 120,
-        status: 'completed'
+        materialUsed: 140,
+        status: 'completed',
       },
       {
         installerId: installer._id,
-        vehicleId: vehicles[1]._id, // Porsche
+        vehicleId: createdVehicles[3]._id, // Tesla Model 3
         patterns: [
-          { patternId: createdPatterns[3]._id, name: 'Track Package' }
+          { patternId: createdPatterns[3]._id, name: createdPatterns[3].name }
         ],
         filmWidth: 60,
-        materialUsed: 80,
-        status: 'processing'
-      }
+        materialUsed: 110,
+        status: 'processing',
+      },
     ]);
 
-    console.log('Data successfully seeded!');
-    process.exit();
+    console.log('Database seeded successfully!');
+    process.exit(0);
   } catch (error) {
-    console.error('Error with data import: ', error);
+    console.error('Seeding error:', error);
     process.exit(1);
   }
 };
